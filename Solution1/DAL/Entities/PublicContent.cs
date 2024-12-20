@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    internal class PublicContent
+    public class PublicContent
     {
         public int PublicContentID { get; set; }
         public string PublicContentTitle { get; set; }

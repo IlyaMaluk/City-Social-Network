@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Interfaces
 {
-    internal interface IPublicContent : IRepository<PublicContent>
+    public interface IPublicContentRepository : IRepository<PublicContent>
     {
     }
 }
