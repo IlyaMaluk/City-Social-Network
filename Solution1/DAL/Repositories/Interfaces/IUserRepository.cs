@@ -9,6 +9,6 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        
+        IEnumerable<User> GetUsersSortedByEmail();
     }
 }

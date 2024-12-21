@@ -11,8 +11,8 @@ namespace DAL.Repositories.Impl
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : class
     {
-        private readonly DbSet<T> _set;
-        private readonly DbContext _context;
+        protected readonly DbSet<T> _set;
+        protected readonly DbContext _context;
 
         public BaseRepository(DbContext context)
         {
@@ -39,7 +39,7 @@ namespace DAL.Repositories.Impl
             return
                 _set.Where(predicate)
                     .Skip(pageSize * pageNumber)
-                    .Take(pageNumber)
+                    .Take(pageSize)
                     .ToList();
         }
 

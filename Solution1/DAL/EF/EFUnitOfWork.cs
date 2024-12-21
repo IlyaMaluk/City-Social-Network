@@ -1,67 +1,66 @@
-﻿using DAL.Repositories.Interfaces;
+﻿using DAL.EF;
+using DAL.Repositories.Impl;
+using DAL.Repositories.Interfaces;
+using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.EF
 {
-    public abstract class BaseRepository<T> : IRepository<T>
-        where T : class
+    public class EFUnitOfWork : IUnitOfWork
     {
-        private readonly DbSet<T> _set;
-        private readonly DbContext _context;
+        private UserContext db;
+        private UserRepository userRepository;
+        private PublicContentRepository publicContentRepository;
 
-        public BaseRepository(DbContext context)
+        public EFUnitOfWork(UserContext context)
         {
-            _context = context;
-            _set = context.Set<T>();
+            db = context;
         }
 
-        public void Create(T item)
+        public IUserRepository Users
         {
-            _set.Add(item);
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(db);
+                return userRepository;
+            }
         }
 
-        public void Delete(int id)
+        public IPublicContentRepository PublicContents
         {
-            var item = Get(id);
-            _set.Remove(item);
+            get
+            {
+                if (publicContentRepository == null)
+                    publicContentRepository = new PublicContentRepository(db);
+                return publicContentRepository;
+            }
         }
 
-        public IEnumerable<T> Find(
-            Func<T, bool> predicate,
-            int pageNumber = 0,
-            int pageSize = 10)
+        public void Save()
         {
-            return
-                _set.Where(predicate)
-                    .Skip(pageSize * pageNumber)
-                    .Take(pageNumber)
-                    .ToList();
+            db.SaveChanges();
         }
 
-        public IEnumerable<T> Find(Func<T, bool> predicate)
+        private bool disposed = false;
+
+        public virtual void Dispose(bool disposing)
         {
-            throw new NotImplementedException();
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    db.Dispose();
+                }
+                this.disposed = true;
+            }
         }
 
-        public T Get(int id)
+        public void Dispose()
         {
-            return _set.Find(id);
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return _set.ToList();
-        }
-
-        public void Update(T item)
-        {
-            _context.Entry(item).State = EntityState.Modified;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
-
 }
