@@ -64,5 +64,29 @@ namespace DAL.Tests
             // Assert
             mockDbSet.Verify(dbSet => dbSet.Add(expectedUser), Times.Once());
         }
+
+        [Fact]
+        public void Delete_InputId_CalledFindAndRemoveMethodsOfDBSetWithCorrectArg()
+        {
+            // Arrange
+            DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
+                .Options;
+            var mockContext = new Mock<UserContext>(options);
+            var mockDbSet = new Mock<DbSet<User>>();
+            mockContext.Setup(context => context.Set<User>()).Returns(mockDbSet.Object);
+
+            var repository = new UserRepository(mockContext.Object);
+
+            User expectedUser = new User { UserId = 1, Name = "John Doe", Email = "john@example.com" };
+            mockDbSet.Setup(mock => mock.Find(expectedUser.UserId)).Returns(expectedUser);
+
+            // Act
+            repository.Delete(expectedUser.UserId);
+
+            // Assert
+            mockDbSet.Verify(dbSet => dbSet.Find(expectedUser.UserId), Times.Once());
+            mockDbSet.Verify(dbSet => dbSet.Remove(expectedUser), Times.Once());
+        }
+
     }
 }
