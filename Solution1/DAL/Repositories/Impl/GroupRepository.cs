@@ -12,7 +12,7 @@ namespace DAL.Repositories.Impl
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
-        public GroupRepository(UserContext context) : base(context) 
+        public GroupRepository(GroupContext context) : base(context) 
         { 
         }
 

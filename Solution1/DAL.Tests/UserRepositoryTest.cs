@@ -16,9 +16,9 @@ namespace DAL.Tests
         public void GetUsersSortedByEmail_ReturnsUsersSortedByEmail()
         {
             // Arrange
-            DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
+            DbContextOptions options = new DbContextOptionsBuilder<GroupContext>()
                 .Options;
-            var mockContext = new Mock<UserContext>(options);
+            var mockContext = new Mock<GroupContext>(options);
             var mockDbSet = new Mock<DbSet<Group>>();
 
             var users = new List<Group>
@@ -49,9 +49,9 @@ namespace DAL.Tests
         public void Create_InputUserInstance_CalledAddMethodOfDBSetWithUserInstance()
         {
             // Arrange
-            DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
+            DbContextOptions options = new DbContextOptionsBuilder<GroupContext>()
                 .Options;
-            var mockContext = new Mock<UserContext>(options);
+            var mockContext = new Mock<GroupContext>(options);
             var mockDbSet = new Mock<DbSet<Group>>();
             mockContext.Setup(context => context.Set<Group>()).Returns(mockDbSet.Object);
 
@@ -69,9 +69,9 @@ namespace DAL.Tests
         public void Delete_InputId_CalledFindAndRemoveMethodsOfDBSetWithCorrectArg()
         {
             // Arrange
-            DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
+            DbContextOptions options = new DbContextOptionsBuilder<GroupContext>()
                 .Options;
-            var mockContext = new Mock<UserContext>(options);
+            var mockContext = new Mock<GroupContext>(options);
             var mockDbSet = new Mock<DbSet<Group>>();
             mockContext.Setup(context => context.Set<Group>()).Returns(mockDbSet.Object);
 

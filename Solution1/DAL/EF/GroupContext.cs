@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DAL.EF
 {
-    public class UserContext : DbContext
+    public class GroupContext : DbContext
     {
         public DbSet<Group> Groups { get; set; }
         public DbSet<PublicContent> PublicContents {  get; set; }
 
-        public UserContext(DbContextOptions options) : base(options)
+        public GroupContext(DbContextOptions options) : base(options)
         {
 
         }

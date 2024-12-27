@@ -25,9 +25,9 @@ namespace DAL.Tests
         public void Create_InputPublicContentInstance_CalledAddMethodOfDBSetWithPublicContentInstance()
         {
             // Arrange
-            DbContextOptions opt = new DbContextOptionsBuilder<UserContext>()
+            DbContextOptions opt = new DbContextOptionsBuilder<GroupContext>()
                 .Options;
-            var mockContext = new Mock<UserContext>(opt);
+            var mockContext = new Mock<GroupContext>(opt);
             var mockDbSet = new Mock<DbSet<PublicContent>>();
             mockContext
                 .Setup(context =>
@@ -53,9 +53,9 @@ namespace DAL.Tests
         public void Delete_InputId_CalledFindAndRemoveMethodsOfDBSetWithCorrectArg()
         {
             // Arrange
-            DbContextOptions opt = new DbContextOptionsBuilder<UserContext>()
+            DbContextOptions opt = new DbContextOptionsBuilder<GroupContext>()
                 .Options;
-            var mockContext = new Mock<UserContext>(opt);
+            var mockContext = new Mock<GroupContext>(opt);
             var mockDbSet = new Mock<DbSet<PublicContent>>();
             mockContext
                 .Setup(context =>
@@ -85,9 +85,9 @@ namespace DAL.Tests
         public void Get_InputId_CalledFindMethodOfDBSetWithCorrectId()
         {
             // Arrange
-            DbContextOptions opt = new DbContextOptionsBuilder<UserContext>()
+            DbContextOptions opt = new DbContextOptionsBuilder<GroupContext>()
                 .Options;
-            var mockContext = new Mock<UserContext>(opt);
+            var mockContext = new Mock<GroupContext>(opt);
             var mockDbSet = new Mock<DbSet<PublicContent>>();
             mockContext
                 .Setup(context =>

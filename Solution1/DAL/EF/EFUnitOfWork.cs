@@ -9,11 +9,11 @@ namespace DAL.EF
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private UserContext db;
+        private GroupContext db;
         private GroupRepository userRepository;
         private PublicContentRepository publicContentRepository;
 
-        public EFUnitOfWork(UserContext context)
+        public EFUnitOfWork(GroupContext context)
         {
             db = context;
         }

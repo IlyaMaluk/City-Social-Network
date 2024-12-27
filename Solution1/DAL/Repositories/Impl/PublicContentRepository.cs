@@ -11,7 +11,7 @@ namespace DAL.Repositories.Impl
 {
     public class PublicContentRepository : BaseRepository<PublicContent>, IPublicContentRepository
     {
-        internal PublicContentRepository(UserContext context) : base(context) 
+        internal PublicContentRepository(GroupContext context) : base(context) 
         {
         }
     }

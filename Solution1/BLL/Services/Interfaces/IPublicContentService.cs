@@ -9,8 +9,7 @@ namespace BLL.Services.Interfaces
 {
     public interface IPublicContentService
     {
-        IEnumerable<PublicContentDTO> GetPublicContents(int page) 
-        {
-        }
+        IEnumerable<PublicContentDTO> GetPublicContents(int page);
+        void AddPublicContent(PublicContentDTO publicContent);
     }
 }
