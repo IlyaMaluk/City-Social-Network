@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class User
+    public class Group
     {
-        public int UserId { get; set; }
+        public int GroupId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         private string Password { get; set; }

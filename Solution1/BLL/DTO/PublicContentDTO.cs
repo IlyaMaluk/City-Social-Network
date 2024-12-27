@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace BLL.DTO
 {
-    public class PublicContent
+    public class PublicContentDTO
     {
         public int PublicContentID { get; set; }
         public string PublicContentTitle { get; set; }
         public string PublicContentDescription { get; set; }
-
-        public int UserID { get; set; }
-        public Group User { get; set; }
     }
 }

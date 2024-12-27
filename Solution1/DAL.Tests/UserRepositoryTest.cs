@@ -19,23 +19,23 @@ namespace DAL.Tests
             DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
                 .Options;
             var mockContext = new Mock<UserContext>(options);
-            var mockDbSet = new Mock<DbSet<User>>();
+            var mockDbSet = new Mock<DbSet<Group>>();
 
-            var users = new List<User>
+            var users = new List<Group>
             {
-                new User { UserId = 1, Name = "Alice", Email = "alice@example.com" },
-                new User { UserId = 2, Name = "Bob", Email = "bob@example.com" },
-                new User { UserId = 3, Name = "Charlie", Email = "charlie@example.com" }
+                new Group { GroupId = 1, Name = "Alice", Email = "alice@example.com" },
+                new Group { GroupId = 2, Name = "Bob", Email = "bob@example.com" },
+                new Group { GroupId = 3, Name = "Charlie", Email = "charlie@example.com" }
             }.AsQueryable();
 
-            mockDbSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
-            mockDbSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(users.Expression);
-            mockDbSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(users.ElementType);
-            mockDbSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
+            mockDbSet.As<IQueryable<Group>>().Setup(m => m.Provider).Returns(users.Provider);
+            mockDbSet.As<IQueryable<Group>>().Setup(m => m.Expression).Returns(users.Expression);
+            mockDbSet.As<IQueryable<Group>>().Setup(m => m.ElementType).Returns(users.ElementType);
+            mockDbSet.As<IQueryable<Group>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
 
-            mockContext.Setup(c => c.Set<User>()).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Set<Group>()).Returns(mockDbSet.Object);
 
-            var repository = new UserRepository(mockContext.Object);
+            var repository = new GroupRepository(mockContext.Object);
 
             // Act
             var result = repository.GetUsersSortedByEmail();
@@ -52,11 +52,11 @@ namespace DAL.Tests
             DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
                 .Options;
             var mockContext = new Mock<UserContext>(options);
-            var mockDbSet = new Mock<DbSet<User>>();
-            mockContext.Setup(context => context.Set<User>()).Returns(mockDbSet.Object);
+            var mockDbSet = new Mock<DbSet<Group>>();
+            mockContext.Setup(context => context.Set<Group>()).Returns(mockDbSet.Object);
 
-            var repository = new UserRepository(mockContext.Object);
-            User expectedUser = new User { UserId = 1, Name = "John Doe", Email = "john@example.com" };
+            var repository = new GroupRepository(mockContext.Object);
+            Group expectedUser = new Group { GroupId = 1, Name = "John Doe", Email = "john@example.com" };
 
             // Act
             repository.Create(expectedUser);
@@ -72,19 +72,19 @@ namespace DAL.Tests
             DbContextOptions options = new DbContextOptionsBuilder<UserContext>()
                 .Options;
             var mockContext = new Mock<UserContext>(options);
-            var mockDbSet = new Mock<DbSet<User>>();
-            mockContext.Setup(context => context.Set<User>()).Returns(mockDbSet.Object);
+            var mockDbSet = new Mock<DbSet<Group>>();
+            mockContext.Setup(context => context.Set<Group>()).Returns(mockDbSet.Object);
 
-            var repository = new UserRepository(mockContext.Object);
+            var repository = new GroupRepository(mockContext.Object);
 
-            User expectedUser = new User { UserId = 1, Name = "John Doe", Email = "john@example.com" };
-            mockDbSet.Setup(mock => mock.Find(expectedUser.UserId)).Returns(expectedUser);
+            Group expectedUser = new Group { GroupId = 1, Name = "John Doe", Email = "john@example.com" };
+            mockDbSet.Setup(mock => mock.Find(expectedUser.GroupId)).Returns(expectedUser);
 
             // Act
-            repository.Delete(expectedUser.UserId);
+            repository.Delete(expectedUser.GroupId);
 
             // Assert
-            mockDbSet.Verify(dbSet => dbSet.Find(expectedUser.UserId), Times.Once());
+            mockDbSet.Verify(dbSet => dbSet.Find(expectedUser.GroupId), Times.Once());
             mockDbSet.Verify(dbSet => dbSet.Remove(expectedUser), Times.Once());
         }
 

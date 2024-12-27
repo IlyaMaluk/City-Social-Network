@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Interfaces
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IGroupRepository : IRepository<Group>
     {
-        IEnumerable<User> GetUsersSortedByEmail();
+        IEnumerable<Group> GetUsersSortedByEmail();
     }
 }

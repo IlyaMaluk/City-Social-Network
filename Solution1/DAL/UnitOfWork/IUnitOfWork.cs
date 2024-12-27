@@ -9,7 +9,7 @@ namespace DAL.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserRepository Users { get; }
+        IGroupRepository Users { get; }
         IPublicContentRepository PublicContents { get; }
         void Save();
     }

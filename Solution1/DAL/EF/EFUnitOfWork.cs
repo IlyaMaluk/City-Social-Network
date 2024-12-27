@@ -10,7 +10,7 @@ namespace DAL.EF
     public class EFUnitOfWork : IUnitOfWork
     {
         private UserContext db;
-        private UserRepository userRepository;
+        private GroupRepository userRepository;
         private PublicContentRepository publicContentRepository;
 
         public EFUnitOfWork(UserContext context)
@@ -18,12 +18,12 @@ namespace DAL.EF
             db = context;
         }
 
-        public IUserRepository Users
+        public IGroupRepository Users
         {
             get
             {
                 if (userRepository == null)
-                    userRepository = new UserRepository(db);
+                    userRepository = new GroupRepository(db);
                 return userRepository;
             }
         }

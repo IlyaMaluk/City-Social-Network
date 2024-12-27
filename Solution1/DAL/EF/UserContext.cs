@@ -10,7 +10,7 @@ namespace DAL.EF
 {
     public class UserContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Group> Groups { get; set; }
         public DbSet<PublicContent> PublicContents {  get; set; }
 
         public UserContext(DbContextOptions options) : base(options)

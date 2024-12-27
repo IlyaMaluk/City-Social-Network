@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories.Impl
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
-        public UserRepository(UserContext context) : base(context) 
+        public GroupRepository(UserContext context) : base(context) 
         { 
         }
 
-        public IEnumerable<User> GetUsersSortedByEmail()
+        public IEnumerable<Group> GetUsersSortedByEmail()
         {
-            return _context.Set<User>().OrderBy(u => u.Email).ToList();
+            return _context.Set<Group>().OrderBy(u => u.Email).ToList();
         }
 
     }
