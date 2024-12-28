@@ -16,7 +16,7 @@ namespace DAL.Repositories.Impl
         { 
         }
 
-        public IEnumerable<Group> GetUsersSortedByEmail()
+        public IEnumerable<Group> GetGroupsSortedByEmail()
         {
             return _context.Set<Group>().OrderBy(u => u.Email).ToList();
         }

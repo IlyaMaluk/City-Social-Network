@@ -9,6 +9,6 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IGroupRepository : IRepository<Group>
     {
-        IEnumerable<Group> GetUsersSortedByEmail();
+        IEnumerable<Group> GetGroupsSortedByEmail();
     }
 }

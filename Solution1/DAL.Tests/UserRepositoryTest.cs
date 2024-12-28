@@ -13,7 +13,7 @@ namespace DAL.Tests
     public class UserRepositoryUnitTests
     {
         [Fact]
-        public void GetUsersSortedByEmail_ReturnsUsersSortedByEmail()
+        public void GetGroupsSortedByEmail_ReturnsGroupsSortedByEmail()
         {
             // Arrange
             DbContextOptions options = new DbContextOptionsBuilder<GroupContext>()
@@ -38,7 +38,7 @@ namespace DAL.Tests
             var repository = new GroupRepository(mockContext.Object);
 
             // Act
-            var result = repository.GetUsersSortedByEmail();
+            var result = repository.GetGroupsSortedByEmail();
 
             // Assert
             Assert.NotNull(result);
@@ -46,7 +46,7 @@ namespace DAL.Tests
         }
 
         [Fact]
-        public void Create_InputUserInstance_CalledAddMethodOfDBSetWithUserInstance()
+        public void Create_InputGroupInstance_CalledAddMethodOfDBSetWithGroupInstance()
         {
             // Arrange
             DbContextOptions options = new DbContextOptionsBuilder<GroupContext>()
